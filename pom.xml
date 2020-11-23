@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.3.6.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>org.consistenthash</groupId>
+	<artifactId>dbsharding</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>dbsharding</name>
+	<description>Database Sharding</description>
+
+	<properties>
+		<java.version>11</java.version>
+		<spring-cloud.version>Hoxton.SR9</spring-cloud.version>
+		<mybatis-plus-boot-starter.version>3.0-RELEASE</mybatis-plus-boot-starter.version>
+<!--		<spring-data-jpa.version>2.3.4.RELEASE</spring-data-jpa.version>-->
+		<shardingsphere.version>3.1.0</shardingsphere.version>
+		<testcontainers.version>1.15.0</testcontainers.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency> <!-- ORM MyBatis -->
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-boot-starter</artifactId>
+			<version>${mybatis-plus-boot-starter.version}</version>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.cloud</groupId>-->
+<!--			<artifactId>spring-cloud-starter-zookeeper-config</artifactId>-->
+<!--		</dependency>-->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+<!--		<dependency>-->
+<!--			<groupId>org.postgresql</groupId>-->
+<!--			<artifactId>postgresql</artifactId>-->
+<!--			<scope>runtime</scope>-->
+<!--		</dependency>-->
+		<!-- https://mvnrepository.com/artifact/org.apache.shardingsphere/shardingsphere-sql-parser-postgresql -->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.shardingsphere</groupId>-->
+<!--			<artifactId>shardingsphere-sql-parser-postgresql</artifactId>-->
+<!--			<version>4.1.1</version>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
+
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.data</groupId>-->
+<!--			<artifactId>spring-data-jpa</artifactId>-->
+<!--			<version>${spring-data-jpa.version}</version>-->
+<!--		</dependency>-->
+
+<!--		 数据分片-->
+		<!-- for spring boot -->
+		<dependency>
+			<groupId>io.shardingsphere</groupId>
+			<artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+			<version>${shardingsphere.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.shardingsphere</groupId>
+			<artifactId>sharding-jdbc-spring-namespace</artifactId>
+			<version>${shardingsphere.version}</version>
+		</dependency>
+
+<!--		数据治理-->
+<!--		&lt;!&ndash; for spring boot &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>io.shardingsphere</groupId>-->
+<!--			<artifactId>sharding-jdbc-orchestration-spring-boot-starter</artifactId>-->
+<!--			<version>${shardingsphere.version}</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash;若使用zookeeper, 请加入下面Maven坐标&ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>io.shardingsphere</groupId>-->
+<!--			<artifactId>sharding-orchestration-reg-zookeeper-curator</artifactId>-->
+<!--			<version>${shardingsphere.version}</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash;若使用etcd, 请加入下面Maven坐标&ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>io.shardingsphere</groupId>-->
+<!--			<artifactId>sharding-orchestration-reg-etcd</artifactId>-->
+<!--			<version>${shardingsphere.version}</version>-->
+<!--		</dependency>-->
+<!--&lt;!&ndash;		分布式事务&ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>io.shardingsphere</groupId>-->
+<!--			<artifactId>sharding-transaction-2pc-xa</artifactId>-->
+<!--			<version>${shardingsphere.version}</version>-->
+<!--		</dependency>-->
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-contract-stub-runner</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>mysql</artifactId>
+			<scope>test</scope>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.testcontainers</groupId>-->
+<!--			<artifactId>postgresql</artifactId>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.testcontainers</groupId>
+				<artifactId>testcontainers-bom</artifactId>
+				<version>${testcontainers.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*Mapper.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>**/application-local.yml</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
+
+</project>
